@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "299310629264",
+    "firebase_url": "https://findmyparking-1542566114149.firebaseio.com",
+    "project_id": "findmyparking-1542566114149",
+    "storage_bucket": "findmyparking-1542566114149.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299310629264:android:056f1f7ac9a893d6",
+        "android_client_info": {
+          "package_name": "com.example.eapal.findmyparking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299310629264-jdu4h0qrd3jodrt2fnfp5oth418edisu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eapal.findmyparking",
+            "certificate_hash": "9bb7890f21378ee8bc1b2a26cb3c5b763ea139ff"
+          }
+        },
+        {
+          "client_id": "299310629264-r89f09kbcgon2atjreqeb7l7e7f197ao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGnYiQ9F_IGPRxMsgig7lGlEpJBksmoFc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299310629264-r89f09kbcgon2atjreqeb7l7e7f197ao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
