@@ -26,9 +26,6 @@ import java.util.Map;
 
 public class Principal extends AppCompatActivity implements View.OnClickListener {
 
-    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
-    private FusedLocationProviderClient mFusedLocationClient;
-    private DatabaseReference databaseReference;
     private Button btnIngresar, btnRegistrar;
     private EditText correo, pass;
     private FirebaseAuth mAuth;
@@ -38,10 +35,9 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrar = findViewById(R.id.btnRegistrar);
+
 
         btnIngresar.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
@@ -53,32 +49,12 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 .build();
     }
 
-    private void subirLatLgnToFirebase() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        
+        pass = findViewById(R.id.txtPass);
+ 6a8a9dd428852aabe00674dcd05d38378712eb5d
 
-            ActivityCompat.requestPermissions(Principal.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-
-            return;
-        }
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            // Logic to handle location object
-                            Log.e("Posición:", "Latitud: "+location.getLatitude()+" Longitud: "+location.getLongitude());
-                            Map<String, Object> latlgn = new HashMap<>();
-                            latlgn.put("lat", location.getLatitude());
-                            latlgn.put("lgn", location.getLongitude());
-                            databaseReference.child("direcciones").push().setValue(latlgn);
-                        }
-                    }
-                });
+        btnIngresar.setOnClickListener(this);
+        btnRegistrar.setOnClickListener(this);
     }
 
     @Override
