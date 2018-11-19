@@ -35,7 +35,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         btnIngresar = findViewById(R.id.btnIngresar);
-        btnRegistrar = findViewById(R.id.btnIngresar);
+        btnRegistrar = findViewById(R.id.btnRegistrar);
 
         btnIngresar.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
