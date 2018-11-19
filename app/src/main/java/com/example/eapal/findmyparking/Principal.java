@@ -42,17 +42,11 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         btnIngresar.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
 
-        subirLatLgnToFirebase();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-    }
-
-        
         pass = findViewById(R.id.txtPass);
- 6a8a9dd428852aabe00674dcd05d38378712eb5d
-
         btnIngresar.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
     }
