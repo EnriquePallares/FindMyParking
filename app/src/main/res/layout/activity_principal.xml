@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".Principal">
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="@android:color/transparent" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -14,53 +20,37 @@
         app:srcCompat="@drawable/logo" />
 
     <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="9dp"
-        android:background="@android:color/transparent" />
-
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/txtPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/contrasena"
-        android:inputType="textPassword" />
-
-    <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="16dp"
         android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="@drawable/fb" />
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:onClick="ingresar"
+        android:text="@string/ingresarConGoogle" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnIngresar"
-            android:layout_width="157dp"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:onClick="ingresar"
-            android:text="@string/ingresar" />
-
-        <Button
-            android:id="@+id/btnRegistrar"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:text="@string/registro" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ingresarConCorreo" />
 
     <View
         android:id="@+id/divider3"

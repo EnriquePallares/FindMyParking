@@ -13,9 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,6 +31,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference databaseReference;
     private Button btnIngresar, btnRegistrar;
     private EditText correo, pass;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,10 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         btnRegistrar.setOnClickListener(this);
 
         subirLatLgnToFirebase();
-
-        correo = findViewById(R.id.txtEmail);
-        pass = findViewById(R.id.txtPass);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
     }
 
     private void subirLatLgnToFirebase() {
@@ -81,13 +85,10 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnIngresar:
-                String cor = correo.getText().toString(), pas = pass.getText().toString();
-                if (Metodos.logIn(cor, pas)){
+
                     Intent intent = new Intent(Principal.this, MapsActivity.class);
                     startActivity(intent);
-                }else{
-                    Snackbar.make(v, getResources().getText(R.string.errorLogin), Snackbar.LENGTH_LONG).show();
-                }
+
                 break;
 
             case R.id.btnRegistrar:

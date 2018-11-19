@@ -18,7 +18,8 @@
     <string name="admin">Administrador</string>
     <string name="mCliente">¿Buscas donde parquear?</string>
     <string name="madmin">O ¿Quieres alquilar tu parqueadero?</string>
-    <string name="ingresar">Ingresar</string>
+    <string name="ingresarConGoogle">Ingresar con Google</string>
+    <string name="ingresarConFb">Ingresar con Facebook</string>
     <string name="rol">Selecciona tu rol</string>
     <string name="registro">Registrarse</string>
     <string name="nombre">Nombre</string>
@@ -34,4 +35,5 @@
     </string-array>
     <string name="exitoRegistro">Bienvenido al sistema, por favor ingrese desde el panel de log in.</string>
     <string name="errorLogin">No se pudo ingresar, compruebe sus credenciales.</string>
+    <string name="ingresarConCorreo">Ingresar con Correo</string>
 </resources>
