@@ -4,12 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -26,6 +28,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     private FusedLocationProviderClient mFusedLocationClient;
     private DatabaseReference databaseReference;
     private Button btnIngresar, btnRegistrar;
+    private EditText correo, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         btnRegistrar.setOnClickListener(this);
 
         subirLatLgnToFirebase();
+
+        correo = findViewById(R.id.txtEmail);
+        pass = findViewById(R.id.txtPass);
     }
 
     private void subirLatLgnToFirebase() {
@@ -62,11 +68,9 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                         if (location != null) {
                             // Logic to handle location object
                             Log.e("Posición:", "Latitud: "+location.getLatitude()+" Longitud: "+location.getLongitude());
-
                             Map<String, Object> latlgn = new HashMap<>();
                             latlgn.put("lat", location.getLatitude());
                             latlgn.put("lgn", location.getLongitude());
-
                             databaseReference.child("usuarios").push().setValue(latlgn);
                         }
                     }
@@ -77,8 +81,13 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnIngresar:
-                Intent intent = new Intent(Principal.this, MapsActivity.class);
-                startActivity(intent);
+                String cor = correo.getText().toString(), pas = pass.getText().toString();
+                if (Metodos.logIn(cor, pas)){
+                    Intent intent = new Intent(Principal.this, MapsActivity.class);
+                    startActivity(intent);
+                }else{
+                    Snackbar.make(v, getResources().getText(R.string.errorLogin), Snackbar.LENGTH_LONG).show();
+                }
                 break;
 
             case R.id.btnRegistrar:

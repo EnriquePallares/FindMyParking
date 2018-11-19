@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -65,15 +66,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        databaseReference.child("usuarios").addValueEventListener(new ValueEventListener() {
+        ValueEventListener usuarios = databaseReference.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (Marker marker: realTimeMarkers){
+                for (Marker marker : realTimeMarkers) {
                     marker.remove();
                 }
 
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     MapMarkers mm = snapshot.getValue(MapMarkers.class);
                     Double lat = mm.getLat();

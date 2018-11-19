@@ -41,17 +41,38 @@
         android:layout_height="16dp"
         android:background="@android:color/transparent" />
 
-    <Button
-        android:id="@+id/btnIngresar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:onClick="ingresar"
-        android:text="@string/ingresar" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnRegistrar"
+        <Button
+            android:id="@+id/btnIngresar"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:onClick="ingresar"
+            android:text="@string/ingresar" />
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:text="@string/registro" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/registro" />
+        android:text="@string/info"
+        android:textAlignment="center" />
+
 </LinearLayout>

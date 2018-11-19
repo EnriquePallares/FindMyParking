@@ -8,7 +8,7 @@
     tools:context=".Registro">
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/txtCedula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -16,7 +16,7 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,7 +24,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/txtApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,7 +32,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -40,7 +40,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/txtTelefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -48,7 +48,7 @@
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/txtFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -56,52 +56,31 @@
         android:inputType="date" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/txtPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/contrasena"
         android:inputType="textPassword" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="114dp">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/mCliente" />
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="@string/cliente" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/madmin" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/admin" />
-
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/button4"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/roles"
+        android:textSize="14sp" />
+
+    <Spinner
+        android:id="@+id/opcRol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/opcRoles" />
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="@string/registro" />
 
 </LinearLayout>
