@@ -66,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ValueEventListener usuarios = databaseReference.child("usuarios").addValueEventListener(new ValueEventListener() {
+        ValueEventListener direcciones = databaseReference.child("direcciones").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

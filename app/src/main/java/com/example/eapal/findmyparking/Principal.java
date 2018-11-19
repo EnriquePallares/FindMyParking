@@ -71,7 +71,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                             Map<String, Object> latlgn = new HashMap<>();
                             latlgn.put("lat", location.getLatitude());
                             latlgn.put("lgn", location.getLongitude());
-                            databaseReference.child("usuarios").push().setValue(latlgn);
+                            databaseReference.child("direcciones").push().setValue(latlgn);
                         }
                     }
                 });
