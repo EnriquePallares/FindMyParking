@@ -1,4 +1,29 @@
 <resources>
     <string name="app_name">FindMyParking</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_login">Ingresar</string>
+    <!-- Strings related to login -->
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="email">Correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="cliente">Cliente</string>
+    <string name="admin">Administrador</string>
+    <string name="mCliente">¿Buscas donde parquear?</string>
+    <string name="madmin">O ¿Quieres alquilar tu parqueadero?</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="rol">Selecciona tu rol</string>
+    <string name="registro">Registrarse</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="tel">Telefono</string>
+    <string name="fechaNac">Fecha Nacimiento</string>
+    <string name="cedula">Cedula</string>
 </resources>

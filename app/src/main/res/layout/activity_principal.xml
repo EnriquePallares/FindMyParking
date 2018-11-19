@@ -7,11 +7,46 @@
     android:orientation="vertical"
     tools:context=".Principal">
 
-    <Button
-        android:id="@+id/btnIrMap"
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@android:color/transparent" />
+
+    <EditText
+        android:id="@+id/txtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ir Al Mapa"
-        android:textAllCaps="true"
-        android:textStyle="bold" />
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/txtPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/contrasena"
+        android:inputType="textPassword" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:onClick="ingresar"
+        android:text="@string/ingresar" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="registrarse"
+        android:text="@string/registro" />
 </LinearLayout>
