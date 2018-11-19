@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -24,99 +25,73 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Marker marker;
-    double lat = 0.0;
-    double lng = 0.0;
+    private DatabaseReference databaseReference;
+    private ArrayList<Marker> tmpRealTimeMarker = new ArrayList<>();
+    private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
-        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-
-        if (status == ConnectionResult.SUCCESS) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
-        } else {
-            Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, (Activity) getApplicationContext(), 10);
-            dialog.show();
-        }
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        miUbicacion();
-        /*mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        UiSettings uiSettings = mMap.getUiSettings();
-        uiSettings.setZoomControlsEnabled(true);*/
 
-        // Add a marker in Sydney and move the camera
-        /*LatLng colombia = new LatLng(10.903236, -74.800793);
-        mMap.addMarker(new MarkerOptions().position(colombia).title("Desde las compuectas de mi casa...").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-        float zoomLevel = 16;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(colombia, zoomLevel));*/
-    }
+        databaseReference.child("usuarios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-    private void agregarMarcador(double lat, double lng) {
-        LatLng coords = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coords, 16);
+                for (Marker marker: realTimeMarkers){
+                    marker.remove();
+                }
 
-        if (marker != null) {
-            marker.remove();
-        }
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
 
-        marker = mMap.addMarker(new MarkerOptions()
-                .position(coords)
-                .title("Ubicación Actual")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-        mMap.animateCamera(miUbicacion);
-    }
+                    MapMarkers mm = snapshot.getValue(MapMarkers.class);
+                    Double lat = mm.getLat();
+                    Double lgn = mm.getLgn();
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(new LatLng(lat, lgn));
 
-    private void actualizarUbicacion(Location location) {
-        if (location != null) {
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-            agregarMarcador(lat, lng);
-        }
-    }
+                    tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
+                }
 
-    LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            actualizarUbicacion(location);
-        }
+                realTimeMarkers.clear();
+                realTimeMarkers.addAll(tmpRealTimeMarker);
+            }
 
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
-
-    private void miUbicacion() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        actualizarUbicacion(location);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0, locationListener);
+            }
+        });
     }
 }

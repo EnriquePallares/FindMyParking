@@ -36,17 +36,17 @@
         android:background="@android:color/transparent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnIngresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:onClick="ingresar"
+        android:onClick="onClick"
         android:text="@string/ingresar" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="registrarse"
+        android:onClick="onClick"
         android:text="@string/registro" />
 </LinearLayout>
