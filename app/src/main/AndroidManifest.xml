@@ -45,7 +45,8 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Registro"></activity>
+        <activity android:name=".Registro" />
+        <activity android:name=".ListadoParqueadero"></activity>
     </application>
 
 </manifest>
