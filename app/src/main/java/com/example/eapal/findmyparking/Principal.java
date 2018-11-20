@@ -7,8 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,11 +29,14 @@ import java.util.Objects;
 
 public class Principal extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnIngresar, btnRegistrar;
+    private Button btnGoogle, btnFb, btnCorreo;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authListener;
     private GoogleApiClient googleApiClient;
+    private ProgressBar progressBar;
+
     private static final int RC_SIGN_IN = 777;
+
 
     public Principal() {
     }
@@ -39,27 +45,29 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        btnIngresar = findViewById(R.id.btnGoogle);
-        btnRegistrar = findViewById(R.id.btnRegistrar);
-        btnIngresar.setOnClickListener(this);
-        btnRegistrar.setOnClickListener(this);
-        btnIngresar.setOnClickListener(this);
-        btnRegistrar.setOnClickListener(this);
+        btnGoogle = findViewById(R.id.btnGoogle);
+        btnGoogle.setOnClickListener(this);
+        btnFb = findViewById(R.id.btnFb);
+        btnGoogle.setOnClickListener(this);
+        btnFb.setOnClickListener(this);
+        btnCorreo = findViewById(R.id.btnCorreo);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,null).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
-                mAuth = FirebaseAuth.getInstance();
-        authListener= new FirebaseAuth.AuthStateListener() {
+        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, null).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
+        mAuth = FirebaseAuth.getInstance();
+        authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
+                if (user != null) {
                     goMapsActivity();
                 }
             }
         };
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
     }
 
     private void goMapsActivity() {
@@ -71,33 +79,41 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN){
+        if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(googleSignInResult);
         }
     }
 
     private void handleSignInResult(GoogleSignInResult googleSignInResult) {
-        if (googleSignInResult.isSuccess()){
+        if (googleSignInResult.isSuccess()) {
             firebaseAuthWithGoogle(Objects.requireNonNull(googleSignInResult.getSignInAccount()));
-        }else{
-            Snackbar.make(findViewById(R.id.main_layout),getString(R.string.errorLogin), Snackbar.LENGTH_LONG).show();
+        } else {
+            Snackbar.make(findViewById(R.id.main_layout), getString(R.string.errorLogin), Snackbar.LENGTH_LONG).show();
         }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        progressBar.setVisibility(View.VISIBLE);
+        btnFb.setVisibility(View.GONE);
+        btnGoogle.setVisibility(View.GONE);
+        btnCorreo.setVisibility(View.GONE);
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isComplete()){
+                progressBar.setVisibility(View.GONE);
+                btnFb.setVisibility(View.VISIBLE);
+                btnGoogle.setVisibility(View.VISIBLE);
+                btnCorreo.setVisibility(View.VISIBLE);
+                if (!task.isComplete()) {
                     Toast.makeText(getApplicationContext(), getString(R.string.errorLogin), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    private void signIn() {
+    private void signInGoogle() {
         Intent i = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(i, RC_SIGN_IN);
     }
@@ -112,15 +128,11 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnGoogle:
-                  signIn();
+                signInGoogle();
                 break;
-            case R.id.btnRegistrar:
+            case R.id.btnFb:
                 Intent intent2 = new Intent(Principal.this, Registro.class);
                 startActivity(intent2);
-                break;
-            case R.id.cerrar:
-                FirebaseAuth.getInstance().signOut();
-                Snackbar.make(findViewById(R.id.main_layout), "Sesión cerrada correctamente.", Snackbar.LENGTH_SHORT).show();
                 break;
         }
 
@@ -129,7 +141,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onStop() {
         super.onStop();
-        if (authListener != null){
+        if (authListener != null) {
             mAuth.removeAuthStateListener(authListener);
         }
     }

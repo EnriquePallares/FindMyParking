@@ -40,7 +40,7 @@
         android:typeface="sans" />
 
     <Button
-        android:id="@+id/btnRegistrar"
+        android:id="@+id/btnFb"
         android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -48,29 +48,24 @@
         android:text="@string/ingresarConFb"
         android:typeface="sans" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:visibility="gone"
 
-    </LinearLayout>
+        />
+
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCorreo"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawableStart="@drawable/email"
         android:text="@string/ingresarConCorreo"
         android:typeface="sans" />
-
-    <Button
-        android:id="@+id/cerrar"
-        android:layout_width="326dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onClick"
-        android:text="Cerrrar Sesion" />
 
     <View
         android:id="@+id/divider3"
