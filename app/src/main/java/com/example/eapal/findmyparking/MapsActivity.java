@@ -46,7 +46,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
     private FusedLocationProviderClient mFusedLocationClient;
-    private ArrayList<Marker> touchMarkers = new ArrayList<>();
+    private ArrayList<Marker> tmpTouchMarkers = new ArrayList<>();
+    private ArrayList<MapMarkers> touchMarkers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,37 +69,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ubicacionActual();
         setMarkers();
-
-        /*ValueEventListener direcciones = databaseReference.child("direcciones").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (Marker marker : realTimeMarkers) {
-                    marker.remove();
-                }
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    MapMarkers mm = snapshot.getValue(MapMarkers.class);
-                    Double lat = mm.getLat();
-                    Double lgn = mm.getLgn();
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(new LatLng(lat, lgn));
-
-                    tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
-                }
-
-                realTimeMarkers.clear();
-                realTimeMarkers.addAll(tmpRealTimeMarker);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
+        viewMarkers();
     }
-
 
     public void ubicacionActual() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -135,13 +107,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapClick(LatLng point) {
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(new LatLng(point.latitude, point.longitude));
-                touchMarkers.add(mMap.addMarker(markerOptions));
+                tmpTouchMarkers.add(mMap.addMarker(markerOptions));
 
                 Map<String, Object> latlgn = new HashMap<>();
                 latlgn.put("lat", point.latitude);
                 latlgn.put("lgn", point.longitude);
 
                 databaseReference.child("direcciones").push().setValue(latlgn);
+            }
+        });
+    }
+
+    public void viewMarkers() {
+        databaseReference.child("direcciones").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    MapMarkers mm = snapshot.getValue(MapMarkers.class);
+                    Double lat = mm.getLat();
+                    Double lgn = mm.getLgn();
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(new LatLng(lat, lgn));
+
+                    touchMarkers.add(mm);
+                    tmpTouchMarkers.add(mMap.addMarker(markerOptions));
+                }
+                Datos.setMarcadores(touchMarkers);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
