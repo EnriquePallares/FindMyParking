@@ -122,6 +122,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         databaseReference.child("direcciones").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (Marker marker: tmpTouchMarkers){
+                    marker.remove();
+                }
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     MapMarkers mm = snapshot.getValue(MapMarkers.class);
