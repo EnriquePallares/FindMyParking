@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -26,18 +27,26 @@
         android:background="@android:color/transparent" />
 
     <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/fb" />
-
-    <Button
-        android:id="@+id/btnIngresar"
-        android:layout_width="match_parent"
+        android:id="@+id/btnGoogle"
+        android:layout_width="325dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/google"
         android:elevation="10dp"
         android:onClick="ingresar"
-        android:text="@string/ingresarConGoogle" />
+        android:text="@string/ingresarConGoogle"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/fblogo"
+        android:text="@string/ingresarConFb"
+        android:typeface="sans" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,9 +57,20 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="@string/ingresarConCorreo" />
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/email"
+        android:text="@string/ingresarConCorreo"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/cerrar"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="onClick"
+        android:text="Cerrrar Sesion" />
 
     <View
         android:id="@+id/divider3"

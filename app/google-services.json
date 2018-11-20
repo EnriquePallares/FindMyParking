@@ -23,13 +23,21 @@
           }
         },
         {
+          "client_id": "299310629264-e1q3sg52434hisnf2du7h4k3jpl0htk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eapal.findmyparking",
+            "certificate_hash": "c4936ae3260b49c1054716788de13f6c6b714be6"
+          }
+        },
+        {
           "client_id": "299310629264-r89f09kbcgon2atjreqeb7l7e7f197ao.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGnYiQ9F_IGPRxMsgig7lGlEpJBksmoFc"
+          "current_key": "AIzaSyDt27wKhPrPnpmc5AaZgnSxDra7vPx4oYM"
         }
       ],
       "services": {

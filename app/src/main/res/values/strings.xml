@@ -34,6 +34,7 @@
         <item>@string/admin</item>
     </string-array>
     <string name="exitoRegistro">Bienvenido al sistema, por favor ingrese desde el panel de log in.</string>
-    <string name="errorLogin">No se pudo ingresar, compruebe sus credenciales.</string>
+    <string name="errorLogin">No se pudo ingresar, por favor reintente más tarde.</string>
     <string name="ingresarConCorreo">Ingresar con Correo</string>
+    <string name="api">322032930160-219lo4d3kugeasussbs4qkbf01ahr93u.apps.googleusercontent.com</string>
 </resources>
