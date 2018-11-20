@@ -63,15 +63,17 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    goMapsActivity();
+                    goListActivity();
                 }
             }
         };
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
     }
 
-    private void goMapsActivity() {
-        Intent i = new Intent(this, MapsActivity.class);
+    private void goListActivity() {
+        /*UserParqueadero u = new UserParqueadero(Datos.getId(),"La 84","123456","CRA 6E #98C 40", 3000, new MapMarkers("123",10.7,4),"8:00 am a 10 pm","Jorge Aldana","");
+        u.guardar();*/
+        Intent i = new Intent(this, ListadoParqueadero.class);
         startActivity(i);
     }
 
@@ -108,6 +110,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 btnCorreo.setVisibility(View.VISIBLE);
                 if (!task.isComplete()) {
                     Toast.makeText(getApplicationContext(), getString(R.string.errorLogin), Toast.LENGTH_LONG).show();
+                }else{
+                    goListActivity();
                 }
             }
         });
@@ -131,8 +135,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 signInGoogle();
                 break;
             case R.id.btnFb:
-                Intent intent2 = new Intent(Principal.this, Registro.class);
-                startActivity(intent2);
+
                 break;
         }
 
