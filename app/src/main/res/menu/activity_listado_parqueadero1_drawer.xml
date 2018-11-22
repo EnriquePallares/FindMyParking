@@ -19,17 +19,4 @@
             android:title="@string/herramientas" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/compartir" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/enviar" />
-        </menu>
-    </item>
-
 </menu>

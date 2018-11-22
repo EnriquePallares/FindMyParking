@@ -58,13 +58,13 @@ public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParquead
         final UserParqueadero u = parqueadero.get(i);
         StorageReference storageReference = FirebaseStorage.getInstance()
                 .getReference();
-        storageReference.child(u.getFoto()).getDownloadUrl()
+/*        storageReference.child(u.getFoto()).getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(holder.foto);
                     }
-                });
+                });*/
         //holder.foto.setImageResource(p.getFoto());
         holder.dueno.setText(u.getDueno());
         holder.nombre.setText(u.getNombreParqueo());
@@ -86,7 +86,5 @@ public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParquead
 
     public interface OnParqueoClickListener{
         void onParqueoClick(UserParqueadero u);
-
-        void onMapReady(GoogleMap googleMap);
     }
 }

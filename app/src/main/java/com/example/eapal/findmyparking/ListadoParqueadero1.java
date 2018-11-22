@@ -1,6 +1,7 @@
 package com.example.eapal.findmyparking;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -53,6 +54,7 @@ public class ListadoParqueadero1 extends AppCompatActivity
 
     private FusedLocationProviderClient mFusedLocationClient;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class ListadoParqueadero1 extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,10 +111,7 @@ public class ListadoParqueadero1 extends AppCompatActivity
 
             }
         });
-
         setSupportActionBar(toolbar);
-
-
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
             FirebaseUser user = mAuth.getCurrentUser();
@@ -119,6 +119,9 @@ public class ListadoParqueadero1 extends AppCompatActivity
             nav_email.setText(user.getEmail());
         }
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -179,12 +182,7 @@ public class ListadoParqueadero1 extends AppCompatActivity
             Intent i = new Intent(ListadoParqueadero1.this,Anunciar.class);
             startActivity(i);
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+      }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -193,11 +191,14 @@ public class ListadoParqueadero1 extends AppCompatActivity
 
     @Override
     public void onParqueoClick(UserParqueadero u) {
-
+        Intent i = new Intent(this,MapsActivity.class);
+        Bundle b = new Bundle();
+        b.putDouble("lat",u.getMap().getLat());
+        b.putDouble("lgn",u.getMap().getLgn());
+        b.putString("nombreP", u.getNombreParqueo());
+        i.putExtra("datos",b);
+        startActivity(i);
+        finish();
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-    }
 }

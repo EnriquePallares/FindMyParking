@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -44,16 +45,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private int MY_LOCATION_REQUEST_CODE;
     private GoogleMap mMap;
+    private Bundle bundle;
+    private Intent i;
     private DatabaseReference databaseReference;
     private FusedLocationProviderClient mFusedLocationClient;
     private ArrayList<Marker> tmpTouchMarkers = new ArrayList<>();
     private ArrayList<MapMarkers> touchMarkers = new ArrayList<>();
+    private Double lat, lng;
+    private String nombreP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        i = getIntent();
+        bundle = i.getBundleExtra("datos");
+        lat = bundle.getDouble("lat");
+        lng = bundle.getDouble("lgn");
+        nombreP = bundle.getString("nombreP");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
@@ -67,8 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ubicacionActual();
-        setMarkers();
+       // ubicacionActual();
+        //setMarkers();
         viewMarkers();
     }
 
@@ -117,30 +126,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void viewMarkers() {
-        databaseReference.child("direcciones").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (Marker marker: tmpTouchMarkers){
-                    marker.remove();
-                }
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    MapMarkers mm = snapshot.getValue(MapMarkers.class);
-                    Double lat = mm.getLat();
-                    Double lgn = mm.getLgn();
+                    MapMarkers mm = new MapMarkers();
+                    mm.setLat(lat);
+                    mm.setLgn(lng);
                     MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(new LatLng(lat, lgn));
-
+                    markerOptions.position(new LatLng(lat, lng));
                     touchMarkers.add(mm);
                     tmpTouchMarkers.add(mMap.addMarker(markerOptions));
+        LatLng myPosition = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(myPosition).title(nombreP));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 16));
                 }
-                Datos.setMarcadores(touchMarkers);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+                //Datos.setMarcadores(touchMarkers);
 }
+
