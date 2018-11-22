@@ -3,14 +3,13 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_login">Ingresar</string>
     <!-- Strings related to login -->
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Iniciar sesión o registrar</string>
     <string name="action_sign_in_short">Ingresar</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
+    <string name="error_invalid_email">La dirección de correo es inválida</string>
+    <string name="error_invalid_password">La contraseña es demasiado corta</string>
+    <string name="error_incorrect_password">La contraseña es inválida</string>
+    <string name="error_field_required">Éste campo es requerido</string>
+    <string name="permission_rationale">"Los permisos de los contactos son necesarios para completar el correo electrónico."
     </string>
     <string name="email">Correo</string>
     <string name="contrasena">Contraseña</string>

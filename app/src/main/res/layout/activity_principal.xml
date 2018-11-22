@@ -33,7 +33,7 @@
         android:layout_gravity="center"
         android:drawableStart="@drawable/google"
         android:elevation="10dp"
-        android:onClick="ingresar"
+        android:onClick="onClick"
         android:text="@string/ingresarConGoogle"
         android:textAlignment="center"
         android:textAllCaps="true"
