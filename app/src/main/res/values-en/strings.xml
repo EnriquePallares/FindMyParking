@@ -49,4 +49,6 @@
     <string name="preciohora">Price per hour</string>
     <string name="ubicarme">Locate Parking</string>
     <string name="infoUbicar">Locate yourself inside the parking lot and then press the following button to locate it</string>
+    <string name="error_cero">Enter a value greater than zero</string>
+    <string name="error_longitud">Enter a valid phone number (6 to 15 digits)</string>
 </resources>

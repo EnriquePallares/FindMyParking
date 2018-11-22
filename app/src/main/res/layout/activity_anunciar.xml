@@ -19,8 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
-        android:hint="@string/nombreParqueo"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/nombreParqueo" />
 
     <EditText
         android:id="@+id/txtHorario"

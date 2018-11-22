@@ -8,6 +8,8 @@
     <string name="error_invalid_email">La dirección de correo es inválida</string>
     <string name="error_invalid_password">La contraseña es demasiado corta</string>
     <string name="error_incorrect_password">La contraseña es inválida</string>
+    <string name="error_cero">Ingresa un valor mayor a cero</string>
+    <string name="error_longitud">Ingresa un número telefónico válido (De 6 a 15 dígitos)</string>
     <string name="error_field_required">Éste campo es requerido</string>
     <string name="permission_rationale">"Los permisos de los contactos son necesarios para completar el correo electrónico."
     </string>
