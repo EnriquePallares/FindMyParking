@@ -76,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-       // ubicacionActual();
+       ubicacionActual();
         //setMarkers();
         viewMarkers();
     }
@@ -99,10 +99,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (location != null) {
                             double lat = location.getLatitude();
                             double lgn = location.getLongitude();
-
                             LatLng myPosition = new LatLng(lat, lgn);
-                            mMap.addMarker(new MarkerOptions().position(myPosition).title("Ubicación Actual"));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 16));
                         }
                     }
                 });

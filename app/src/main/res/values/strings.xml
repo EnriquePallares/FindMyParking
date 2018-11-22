@@ -38,7 +38,7 @@
     <string name="errorLogin">No se pudo ingresar, por favor reintente más tarde.</string>
     <string name="ingresarConCorreo">Ingresar con Correo</string>
     <string name="api">322032930160-219lo4d3kugeasussbs4qkbf01ahr93u.apps.googleusercontent.com</string>
-    <string name="title_activity_listado_parqueadero1">ListadoParqueadero1</string>
+    <string name="title_activity_listado_parqueadero1">FindMyParking</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
