@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -84,5 +86,7 @@ public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParquead
 
     public interface OnParqueoClickListener{
         void onParqueoClick(UserParqueadero u);
+
+        void onMapReady(GoogleMap googleMap);
     }
 }

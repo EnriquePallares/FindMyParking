@@ -9,8 +9,7 @@ public class MapMarkers {
     public MapMarkers() {
     }
 
-    public MapMarkers(String id, double lat, double lgn) {
-        this.id = id;
+    public MapMarkers(double lat, double lgn) {
         this.lat = lat;
         this.lgn = lgn;
     }

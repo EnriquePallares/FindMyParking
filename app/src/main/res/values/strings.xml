@@ -37,4 +37,22 @@
     <string name="errorLogin">No se pudo ingresar, por favor reintente más tarde.</string>
     <string name="ingresarConCorreo">Ingresar con Correo</string>
     <string name="api">322032930160-219lo4d3kugeasussbs4qkbf01ahr93u.apps.googleusercontent.com</string>
+    <string name="title_activity_listado_parqueadero1">ListadoParqueadero1</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="salir">Cerrar Sesión</string>
+    <string name="perfil">Perfil</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="anunciar">Anunciar</string>
+    <string name="herramientas">Herramientas</string>
+    <string name="compartir">Compartir</string>
+    <string name="enviar">Enviar</string>
+    <string name="nombreParqueo">Nombre del Parqueadero</string>
+    <string name="horario">Especifique el horario</string>
+    <string name="preciohora">Precio por hora</string>
+    <string name="ubicarme">Ubicar Parqueadero</string>
+    <string name="infoUbicar">Posicionese dentro del parqueadero y luego presione el siguiente botón para ubicarlo</string>
 </resources>

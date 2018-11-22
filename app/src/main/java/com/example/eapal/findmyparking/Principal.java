@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Principal extends AppCompatActivity implements View.OnClickListener {
@@ -68,12 +69,13 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             }
         };
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+       // UserParqueadero u = new UserParqueadero(Datos.getId(),"La 84","3106659495","CRA 44 #84",3000,new MapMarkers(10.7,4.5),"8AM A 2PM","Jorge","");u.guardar();
+
     }
 
     private void goListActivity() {
-        /*UserParqueadero u = new UserParqueadero(Datos.getId(),"La 84","123456","CRA 6E #98C 40", 3000, new MapMarkers("123",10.7,4),"8:00 am a 10 pm","Jorge Aldana","");
-        u.guardar();*/
-        Intent i = new Intent(this, ListadoParqueadero.class);
+
+        Intent i = new Intent(this, ListadoParqueadero1.class);
         startActivity(i);
     }
 
