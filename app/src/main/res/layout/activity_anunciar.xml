@@ -62,11 +62,12 @@
         android:text="@string/infoUbicar" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnUbicar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/ubicarme" />
+        android:text="@string/ubicarme"
+        android:onClick="onClick"/>
 
     <View
         android:id="@+id/divider7"
@@ -75,9 +76,10 @@
         android:background="@android:color/transparent" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="300dp"
+        android:id="@+id/btnRegistro"
+        android:layout_width="302dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:onClick="onClick"
         android:text="@string/registro" />
 </LinearLayout>

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParqueadero.ParqueaderoViewHolder>{
     private ArrayList<UserParqueadero> parqueadero;
     private OnParqueoClickListener clickListener;
-    
+
     public AdaptadorParqueadero(ArrayList<UserParqueadero> parqueadero, OnParqueoClickListener clickListener){
         this.parqueadero=parqueadero;
         this.clickListener = clickListener;
@@ -37,7 +37,7 @@ public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParquead
 
     public static class ParqueaderoViewHolder extends RecyclerView.ViewHolder{
         private ImageView foto;
-        private TextView dir;
+        private TextView tel;
         private TextView nombre;
         private TextView dueno;
         private TextView precio;
@@ -50,7 +50,7 @@ public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParquead
             dueno = v.findViewById(R.id.lblDueno);
             nombre = v.findViewById(R.id.lblNombre);
             precio = v.findViewById(R.id.lblPrecio);
-            dir = v.findViewById(R.id.lblDireccion);
+            tel = v.findViewById(R.id.lblTelefono);
         }
     }
     @Override
@@ -58,17 +58,17 @@ public class AdaptadorParqueadero extends RecyclerView.Adapter<AdaptadorParquead
         final UserParqueadero u = parqueadero.get(i);
         StorageReference storageReference = FirebaseStorage.getInstance()
                 .getReference();
-        /*storageReference.child(u.getFoto()).getDownloadUrl()
+        storageReference.child(u.getFoto()).getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(holder.foto);
                     }
-                });*/
+                });
         //holder.foto.setImageResource(p.getFoto());
         holder.dueno.setText(u.getDueno());
         holder.nombre.setText(u.getNombreParqueo());
-        holder.dir.setText(u.getDir());
+        holder.tel.setText(u.getTelefono());
         holder.precio.setText(""+u.getPrecio());
 
         holder.v.setOnClickListener(new View.OnClickListener() {

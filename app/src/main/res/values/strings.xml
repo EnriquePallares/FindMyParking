@@ -56,4 +56,7 @@
     <string name="preciohora">Precio por hora</string>
     <string name="ubicarme">Ubicar Parqueadero</string>
     <string name="infoUbicar">Posicionese dentro del parqueadero y luego presione el siguiente botón para ubicarlo</string>
+    <string name="btnUbicar">¡Ubicado!</string>
+    <string name="btnNoUbicar">Vuelva a intentarlo</string>
+    <string name="exitoSave">Parqueadero guardado correctamente</string>
 </resources>

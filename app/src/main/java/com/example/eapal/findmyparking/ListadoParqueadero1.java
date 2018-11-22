@@ -48,11 +48,9 @@ public class ListadoParqueadero1 extends AppCompatActivity
     private FirebaseAuth mAuth;
     private LinearLayoutManager llm;
     private DatabaseReference databaseReference;
-    private LocationManager locManager;
+
     private TextView txtNombreNav;
-    double lat;
-    double lgn;
-    private Location loc;
+
     private FusedLocationProviderClient mFusedLocationClient;
 
     @Override
@@ -89,7 +87,7 @@ public class ListadoParqueadero1 extends AppCompatActivity
         lstParqueo.setLayoutManager(llm);
         lstParqueo.setAdapter(adapter);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        ActivityCompat.requestPermissions(ListadoParqueadero1.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
 
         databaseReference.child(db).addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,16 +108,7 @@ public class ListadoParqueadero1 extends AppCompatActivity
 
             }
         });
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-        } else {
-           /* locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            lat = loc.getLatitude();
-            lgn = loc.getLongitude();
-            UserParqueadero u = new UserParqueadero(Datos.getId(),"La 84","123456","CRA 6E #98C 40", 3000, new MapMarkers(lat,lgn),"8:00 am a 10 pm","Jorge Aldana","");
-            u.guardar();*/
-        }
         setSupportActionBar(toolbar);
 
 
