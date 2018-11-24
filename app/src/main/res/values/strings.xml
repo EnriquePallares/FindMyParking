@@ -13,6 +13,7 @@
     <string name="error_field_required">Éste campo es requerido</string>
     <string name="permission_rationale">"Los permisos de los contactos son necesarios para completar el correo electrónico."
     </string>
+    <string name="titleHorario">Horario</string>
     <string name="email">Correo</string>
     <string name="contrasena">Contraseña</string>
     <string name="cliente">Cliente</string>
@@ -33,6 +34,18 @@
     <string-array name="opcRoles">
         <item>@string/cliente</item>
         <item>@string/admin</item>
+    </string-array>
+    <string name="selecHorario">Seleccione disponibilidad de horario</string>
+    <string name="opcHorario1">8am - 6pm</string>
+    <string name="opcHorario2">6am - 8pm</string>
+    <string name="opcHorario3">24 horas</string>
+    <string name="opcHorario4">8am - 8pm</string>
+    <string-array name="horarios">
+        <item>@string/selecHorario</item>
+        <item>@string/opcHorario1</item>
+        <item>@string/opcHorario2</item>
+        <item>@string/opcHorario3</item>
+        <item>@string/opcHorario4</item>
     </string-array>
     <string name="exitoRegistro">Bienvenido al sistema, por favor ingrese desde el panel de log in.</string>
     <string name="errorLogin">No se pudo ingresar, por favor reintente más tarde.</string>
@@ -59,4 +72,5 @@
     <string name="btnUbicar">¡Ubicado!</string>
     <string name="btnNoUbicar">Vuelva a intentarlo</string>
     <string name="exitoSave">Parqueadero guardado correctamente</string>
+    <string name="errorSelect">Por favor, seleccione una opción.</string>
 </resources>

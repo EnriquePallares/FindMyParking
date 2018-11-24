@@ -51,4 +51,14 @@
     <string name="infoUbicar">Locate yourself inside the parking lot and then press the following button to locate it</string>
     <string name="error_cero">Enter a value greater than zero</string>
     <string name="error_longitud">Enter a valid phone number (6 to 15 digits)</string>
+    <string name="titleHorario">Shedule</string>
+    <string name="btnUbicar">¡Located!</string>
+    <string name="btnNoUbicar">Try Again</string>
+    <string name="exitoSave">Correctly guarded parking lot</string>
+    <string name="opcHorario1">8am - 6pm</string>
+    <string name="opcHorario2">6am - 8pm</string>
+    <string name="opcHorario3">24 hours</string>
+    <string name="opcHorario4">8am - 8pm</string>
+    <string name="selecHorario">Select shedule</string>
+    <string name="errorSelect">Please, select a option</string>
 </resources>

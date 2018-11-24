@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +35,7 @@ public class Anunciar extends AppCompatActivity implements View.OnClickListener,
     private Button ubicarme, registro;
     public String bestProvider;
     private String dueno;
-
+    private Spinner sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class Anunciar extends AppCompatActivity implements View.OnClickListener,
         txtNombreParqueadero = findViewById(R.id.txtParqueo);
         txtTelefonoParqueadero = findViewById(R.id.txtTelePar);
         txtPrecioParqueadero = findViewById(R.id.txtPrecio);
-        txtHorario = findViewById(R.id.txtHorario);
+        sp = findViewById(R.id.spHorario);
         registro.setEnabled(false);
         registro.setOnClickListener(this);
         ubicarme.setOnClickListener(this);
@@ -130,11 +131,11 @@ ubicar();
     }
 
     public void registro(){
-        String nom = txtNombreParqueadero.getText().toString(), tel = txtTelefonoParqueadero.getText().toString(), horario = txtHorario.getText().toString();
+        String nom = txtNombreParqueadero.getText().toString(), tel = txtTelefonoParqueadero.getText().toString(), horario = sp.getSelectedItem().toString();
         int pre = Integer.parseInt(txtPrecioParqueadero.getText().toString());
         UserParqueadero u = new UserParqueadero(Datos.getId(),nom,tel,"",pre,new MapMarkers(lat,lgn),horario,dueno,"");
         u.guardar();
-        Snackbar.make(findViewById(R.id.txtHorario),getText(R.string.exitoSave), Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.txtPrecio),getText(R.string.exitoSave), Snackbar.LENGTH_LONG).show();
     }
 
     public boolean validar() {
@@ -168,6 +169,9 @@ ubicar();
             txtPrecioParqueadero.requestFocus();
 
             return false;
+        }
+        if (sp.getSelectedItemPosition()==0){
+            Toast.makeText(this, getText(R.string.errorSelect), Toast.LENGTH_LONG).show();
         }
 
         return true;

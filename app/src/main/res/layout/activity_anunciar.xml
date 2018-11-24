@@ -21,14 +21,19 @@
         android:ems="10"
         android:hint="@string/nombreParqueo" />
 
-    <EditText
-        android:id="@+id/txtHorario"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="300dp"
+        android:layout_height="19dp"
+        android:layout_gravity="center"
+        android:text="TextView" />
+
+    <Spinner
+        android:id="@+id/spHorario"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:ems="10"
-        android:hint="@string/horario"
-        android:inputType="text" />
+        android:entries="@array/horarios" />
 
     <EditText
         android:id="@+id/txtTelePar"
